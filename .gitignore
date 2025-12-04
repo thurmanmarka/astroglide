@@ -1,0 +1,32 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Go build directories
+bin/
+build/
+dist/
+
+# Config files with secrets
+*.yaml
+
+# Logs
+*.log
+
+# python tests
+*.py
+
+# Generated files
+*.txt
+*.csv
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
