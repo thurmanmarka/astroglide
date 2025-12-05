@@ -49,3 +49,23 @@ func ExampleRiseSetFor() {
 	fmt.Println("Sunset:", rs.Set.Format(time.RFC3339))
 	// Again, no // Output: so future algorithm changes don't break tests.
 }
+
+// ExampleDaylightHours demonstrates calculating daylight duration.
+func ExampleDaylightHours() {
+	loc := astroglide.Coordinates{
+		Lat: 33.4484,   // Phoenix, AZ
+		Lon: -112.0740, // Phoenix longitude
+	}
+
+	locPHX, _ := time.LoadLocation("America/Phoenix")
+
+	// Summer solstice
+	summer := time.Date(2025, time.June, 21, 0, 0, 0, 0, locPHX)
+	summerHours, _ := astroglide.DaylightHours(loc, summer)
+	fmt.Printf("Summer solstice daylight: %.2f hours\n", summerHours)
+
+	// Winter solstice
+	winter := time.Date(2025, time.December, 21, 0, 0, 0, 0, locPHX)
+	winterHours, _ := astroglide.DaylightHours(loc, winter)
+	fmt.Printf("Winter solstice daylight: %.2f hours\n", winterHours)
+}

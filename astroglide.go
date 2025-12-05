@@ -152,6 +152,23 @@ func SlideIntoSunset(loc Coordinates, date time.Time) (RiseSet, error) {
 	return RiseSetFor(Sun, loc, date)
 }
 
+// DaylightHours calculates the duration of daylight (time between sunrise and
+// sunset) for the Sun at the given location and date. Returns the duration in
+// hours as a float64.
+//
+// If the sun does not rise or set on the given date (e.g., polar regions), it
+// returns 0 and ErrNoRiseNoSet. For polar day (sun never sets), you can detect
+// this by checking if the sun is always above the horizon separately.
+func DaylightHours(loc Coordinates, date time.Time) (float64, error) {
+	rs, err := SlideIntoSunset(loc, date)
+	if err != nil {
+		return 0, err
+	}
+
+	duration := rs.Set.Sub(rs.Rise)
+	return duration.Hours(), nil
+}
+
 // -----------------------------
 // Sun wrapper around internal/sun
 // -----------------------------

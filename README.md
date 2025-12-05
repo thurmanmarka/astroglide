@@ -100,6 +100,25 @@ fmt.Printf("Moonrise: %s\n", rs.Rise.Format(time.Kitchen))
 fmt.Printf("Moonset:  %s\n", rs.Set.Format(time.Kitchen))
 ```
 
+### Daylight Hours
+
+*Quantify your sunshine intake:*
+
+```go
+location := astroglide.Coordinates{
+    Lat: 33.4484,
+    Lon: -112.0740,
+}
+
+hours, err := astroglide.DaylightHours(location, time.Now())
+if err != nil {
+    panic(err)
+}
+
+fmt.Printf("Hours of daylight: %.2f\n", hours)
+// Phoenix in December: "Only 10.5 hours? Where did the rest go?"
+```
+
 ## API Reference
 
 ### Types
@@ -166,6 +185,9 @@ Computes rise and set times for a celestial body at a given location and date.
 
 #### `SlideIntoSunset(loc Coordinates, date time.Time) (RiseSet, error)`
 Convenience function for computing sunrise and sunset. *The name is the best part of this function.*
+
+#### `DaylightHours(loc Coordinates, date time.Time) (float64, error)`
+Calculates the duration of daylight in hours between sunrise and sunset. *Because knowing how much sunlight you're getting is important for... reasons.*
 
 #### `TwilightFor(loc Coordinates, date time.Time, kind TwilightKind) (RiseSet, error)`
 Computes twilight times (dawn and dusk) for a given twilight type.
