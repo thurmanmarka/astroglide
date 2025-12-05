@@ -4,7 +4,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/thurmanmarka/astroglide/internal/timeutil" // <-- replace with your module path
+	"github.com/thurmanmarka/astroglide/internal/timeutil"
 )
 
 // Equatorial represents equatorial coordinates (right ascension and declination)

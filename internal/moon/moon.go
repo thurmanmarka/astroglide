@@ -18,9 +18,6 @@ import (
 // size), we allow the center to sit slightly lower, and when it's farther,
 // slightly higher.
 
-// Dummy to avoid unused warning
-var _ = moonRefractionApprox
-
 const moonSetExtraDropDeg = 0.16
 
 func ApparentHorizonAltitudeMoon(distanceKm float64) float64 {
